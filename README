@@ -1,0 +1,27 @@
+Build and deploy repository for logstash plugins used
+in wikimedia deployments
+
+# Build
+
+Run the included `./build.sh` script to create a new version of
+the plugin deployment pack. Every deployed build MUST have a new
+version number.
+
+# Commit
+
+The zip files in this repository are managed by `git-fat`. See references
+for more details. Upload the built plugin pack as described by `build.sh` after
+a succesful build. After uploading commit both the new .zip of the plugin pack
+and the updated plugins-latest.zip symlink.
+
+# Deploy
+
+Utilize trebuchet on the deployment master to update and sync out a new version
+of the plugin pack. Logstash hosts, upon seeing a plugins-latest.zip with a
+different hash than their last install, will automatically install the pack.
+Logstash must be manually restarted, preferably in a rolling fashion, after
+deploying a new plugin pack.
+
+# References
+
+* https://wikitech.wikimedia.org/wiki/Archiva
