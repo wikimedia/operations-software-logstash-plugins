@@ -71,7 +71,7 @@ class LogStash::Filters::De_dot < LogStash::Filters::Base
     @logger.debug? && @logger.debug("de_dot: source field reference", :fieldref => fieldref)
     newref = fieldref.gsub('.', @separator)
     @logger.debug? && @logger.debug("de_dot: replacement field reference", :newref => newref)
-    event[newref] = event[fieldref]
+    event.set(newref, event.get(fieldref))
     @logger.debug? && @logger.debug("de_dot: event with both new and old field references", :event => event.to_hash.to_s)
     event.remove(find_fieldref_for_delete(fieldref))
     @logger.debug? && @logger.debug("de_dot: postprocess", :event => event.to_hash.to_s)
