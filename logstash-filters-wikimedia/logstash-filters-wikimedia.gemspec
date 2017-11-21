@@ -1,8 +1,8 @@
 Gem::Specification.new do |s|
 
   s.name            = 'logstash-filters-wikimedia'
-  s.version         = '0.5.0'
-  s.licenses        = ['Apache License (2.0)']
+  s.version         = '0.5.5'
+  s.licenses        = ['Apache-2.0']
   s.summary         = "Backports of logstash plugins for wikimedia installation. Includes the prune and de_dot filters"
   s.description     = "This gem is a logstash plugin required to be installed on top of the Logstash core pipeline using $LS_HOME/bin/logstash-plugin install /path/to/gemfile. This gem is not a stand-alone program"
   s.authors         = ["Elastic"]

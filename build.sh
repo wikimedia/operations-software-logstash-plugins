@@ -64,11 +64,24 @@ echo
 echo ------------------------
 echo Build initial plugin pack with logstash-plugin prepare-offline-pack
 echo
+pushd $LS_HOME # https://github.com/logstash-plugins/logstash-filter-anonymize/issues/11
+
+# Install first otherwize prepare-offline-pack will fail
+$LS_PLUGIN install \
+    logstash-filter-anonymize \
+    logstash-filter-multiline \
+    logstash-filter-prune \
+    logstash-filter-json_encode \
+    logstash-output-sentry
+
 $LS_PLUGIN prepare-offline-pack \
     --output "$PLUGIN_PACK_PATH" \
     logstash-filter-anonymize \
     logstash-filter-multiline \
-    logstash-filter-prune
+    logstash-filter-prune \
+    logstash-filter-json_encode \
+    logstash-output-sentry
+popd
 echo
 
 echo ------------------------
