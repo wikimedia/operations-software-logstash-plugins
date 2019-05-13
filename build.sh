@@ -72,6 +72,7 @@ $LS_PLUGIN install \
     logstash-filter-multiline \
     logstash-filter-prune \
     logstash-filter-json_encode \
+    logstash-filter-truncate \
     logstash-output-sentry
 
 $LS_PLUGIN prepare-offline-pack \
@@ -80,6 +81,7 @@ $LS_PLUGIN prepare-offline-pack \
     logstash-filter-multiline \
     logstash-filter-prune \
     logstash-filter-json_encode \
+    logstash-filter-truncate \
     logstash-output-sentry
 popd
 echo
