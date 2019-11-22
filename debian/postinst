@@ -1,0 +1,29 @@
+#!/bin/sh
+
+set -e
+
+PATH=/usr/share/logstash/bin:$PATH
+
+install_plugins() {
+  local version=$1
+  local plugin_base=/usr/share/logstash-plugins
+  local maj_min=$(echo $version | cut -d. -f1,2)
+
+  for v in "$version" "$maj_min.0"; do
+    local plugin_file="${plugin_base}/${v}-plugins.zip"
+    if [ -e "$plugin_file" ]; then
+      logstash-plugin install "file://$plugin_file"
+      return 0
+    fi
+  done
+
+  echo "Unable to find plugins to install for logstash $version"
+  return 1
+}
+
+case "$1" in
+  configure)
+    ls_version=$(logstash --version | awk '{print $2}')
+    install_plugins $ls_version
+  ;;
+esac

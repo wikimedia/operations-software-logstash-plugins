@@ -1,0 +1,5 @@
+logstash-plugins (0.0.1-1) buster-wikimedia; urgency=medium
+
+  * First release
+
+ -- Filippo Giunchedi <fgiunchedi@wikimedia.org>  Fri, 22 Nov 2019 09:17:45 +0200

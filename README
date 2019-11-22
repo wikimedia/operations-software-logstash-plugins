@@ -1,27 +1,48 @@
-Build and deploy repository for logstash plugins used
-in wikimedia deployments
+Build Debian package for Logstash plugins used in Wikimedia deployments.
+
+# Requisites
+
+You will need a WMCS Cloud VPS host with docker and Debian packaging toolchain installed:
+
+  apt install -y docker.io build-essential devscripts debhelper
+
+And this repository cloned in the same host:
+
+  git clone https://gerrit.wikimedia.org/r/operations/software/logstash/plugins logstash-plugins
+  cd logstash-plugins
 
 # Build
 
-Run the included `./build.sh` script to create a new version of
-the plugin deployment pack. Every deployed build MUST have a new
-version number.
+Increment the Debian version before building the package and commit the result:
 
-# Commit
+  dch -m --release
+  git commit -m "New package version" debian/changelog
 
-The zip files in this repository are managed by `git-fat`. See references
-for more details. Upload the built plugin pack as described by `build.sh` after
-a succesful build. After uploading commit both the new .zip of the plugin pack
-and the updated plugins-latest.zip symlink.
+Then build the package:
+
+  debuild -us -uc -b
+
+If all goes well the resulting package will be in
+
+../logstash-plugins_$(dpkg-parsechangelog --show-field Version)_all.deb
+
+Once happy with the result, commit/push the changes:
+
+  git commit -m "debian: new version" debian/changelog
+  git push
+
+Multiple Logstash versions are supported within the same Debian package.
 
 # Deploy
 
-Utilize trebuchet on the deployment master to update and sync out a new version
-of the plugin pack. Logstash hosts, upon seeing a plugins-latest.zip with a
-different hash than their last install, will automatically install the pack.
-Logstash must be manually restarted, preferably in a rolling fashion, after
-deploying a new plugin pack.
+Copy the package to the "apt host" (e.g. apt1001.wikimedia.org) then include it in the desired
+distribution, for example (as root):
+
+  reprepro includedeb buster-wikimedia <path>
+
+The package is now available to production, and can be upgraded as needed. The plugins will be
+installed automatically on package installation.
 
 # References
 
-* https://wikitech.wikimedia.org/wiki/Archiva
+Debian packaging/uploading guide https://wikitech.wikimedia.org/wiki/Debian_Packaging
