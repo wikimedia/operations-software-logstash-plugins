@@ -1,3 +1,12 @@
+logstash-plugins (7.10.0-1) buster-wikimedia; urgency=medium
+
+  * Refactor to use git-buildpackage
+  * Now builds on the builder host in production
+  * Prepare logstash-filter-logfmt for install
+  * Prepare logstash-output-loki for install
+
+ -- Cole White <cwhite@wikimedia.org>  Mon, 10 May 2021 20:30:10 +0000
+
 logstash-plugins (0.0.1-1) buster-wikimedia; urgency=medium
 
   * First release

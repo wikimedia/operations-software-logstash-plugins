@@ -3,10 +3,11 @@ Section: python
 Priority: optional
 Maintainer: Filippo Giunchedi <fgiunchedi@wikimedia.org>
 Build-Depends: debhelper (>= 10),
-               docker.io | docker-ce
+               logstash-oss (= 1:7.10.0-1)
 Standards-Version: 3.9.8
 
 Package: logstash-plugins
 Architecture: all
-Depends: logstash-oss
-Description: XXX
+Depends: logstash-oss (= 1:7.10.0-1),
+         sudo
+Description: Logstash plugins packaged for offline install.

@@ -1,9 +1,13 @@
+PLUGINS := logstash-filter-logfmt logstash-output-loki
+
 all:
-	LS_VERSION=7.4.0 ./build.sh
-	LS_VERSION=6.8.5 ./build.sh
+	install -d ./build
+	/usr/share/logstash/bin/logstash-plugin install $(PLUGINS)
+	/usr/share/logstash/bin/logstash-plugin prepare-offline-pack --output ./build/logstash-plugins.zip $(PLUGINS)
 
 clean:
 	rm -rf build
 
 install:
 	install -v -D --target-directory $(DESTDIR)/usr/share/logstash-plugins/ build/*.zip
+

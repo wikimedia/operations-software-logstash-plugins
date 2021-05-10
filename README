@@ -1,48 +1,30 @@
 Build Debian package for Logstash plugins used in Wikimedia deployments.
 
-# Requisites
+# Prerequisites
 
-You will need a WMCS Cloud VPS host with docker and Debian packaging toolchain installed:
-
-  apt install -y docker.io build-essential devscripts debhelper
-
-And this repository cloned in the same host:
+Get source:
 
   git clone https://gerrit.wikimedia.org/r/operations/software/logstash/plugins logstash-plugins
   cd logstash-plugins
 
 # Build
 
-Increment the Debian version before building the package and commit the result:
+Configure ~/.pbuilderrc:
 
-  dch -m --release
-  git commit -m "New package version" debian/changelog
+  DEBBUILDOPTS='-sa'
+  USENETWORK=yes
+  BUILD_HOME=/build
 
-Then build the package:
+Set up http proxy (https://wikitech.wikimedia.org/wiki/HTTP_proxy): 
 
-  debuild -us -uc -b
+  export http_proxy=http://webproxy:8080
+  export https_proxy=http://webproxy:8080
+  export no_proxy=127.0.0.1,localhost,.wmnet
 
-If all goes well the resulting package will be in
+Build:
 
-../logstash-plugins_$(dpkg-parsechangelog --show-field Version)_all.deb
+  WIKIMEDIA=yes ELK710=yes gbp buildpackage
 
-Once happy with the result, commit/push the changes:
+# Deploy artifacts
 
-  git commit -m "debian: new version" debian/changelog
-  git push
-
-Multiple Logstash versions are supported within the same Debian package.
-
-# Deploy
-
-Copy the package to the "apt host" (e.g. apt1001.wikimedia.org) then include it in the desired
-distribution, for example (as root):
-
-  reprepro includedeb buster-wikimedia <path>
-
-The package is now available to production, and can be upgraded as needed. The plugins will be
-installed automatically on package installation.
-
-# References
-
-Debian packaging/uploading guide https://wikitech.wikimedia.org/wiki/Debian_Packaging
+See: https://wikitech.wikimedia.org/wiki/Reprepro
