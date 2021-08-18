@@ -1,4 +1,4 @@
-PLUGINS := logstash-filter-logfmt logstash-output-loki
+PLUGINS := logstash-filter-logfmt logstash-output-loki logstash-output-opensearch
 
 all:
 	install -d ./build

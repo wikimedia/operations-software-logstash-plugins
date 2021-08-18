@@ -1,3 +1,9 @@
+logstash-plugins (7.10.0-2) buster-wikimedia; urgency=medium
+
+  * add logstash-output-opensearch plugin
+
+ -- Cole White <cwhite@wikimedia.org>  Wed, 18 Aug 2021 22:36:41 +0000
+
 logstash-plugins (7.10.0-1) buster-wikimedia; urgency=medium
 
   * Refactor to use git-buildpackage
