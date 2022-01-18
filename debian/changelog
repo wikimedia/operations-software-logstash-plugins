@@ -1,3 +1,11 @@
+logstash-plugins (7.16.3-1) buster-wikimedia; urgency=medium
+
+  * Prepare for version 7.16.3
+  * Plugin install postinst now runs as root to coincide
+    with change in file permissions
+
+ -- Cole White <cwhite@wikimedia.org>  Tue, 18 Jan 2022 23:16:51 +0000
+
 logstash-plugins (7.10.0-3) buster-wikimedia; urgency=medium
 
   * updating plugins - bump patch version

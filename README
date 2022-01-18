@@ -23,7 +23,7 @@ Set up http proxy (https://wikitech.wikimedia.org/wiki/HTTP_proxy):
 
 Build:
 
-  WIKIMEDIA=yes ELK710=yes gbp buildpackage
+  WIKIMEDIA=yes OPENSEARCH1=yes gbp buildpackage
 
 # Deploy artifacts
 

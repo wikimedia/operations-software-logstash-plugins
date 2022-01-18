@@ -4,6 +4,6 @@ set -e
 
 case "$1" in
   configure)
-    sudo -u logstash /usr/share/logstash/bin/logstash-plugin install file:///usr/share/logstash-plugins/logstash-plugins.zip
+    sudo /usr/share/logstash/bin/logstash-plugin install file:///usr/share/logstash-plugins/logstash-plugins.zip
   ;;
 esac

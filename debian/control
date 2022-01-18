@@ -3,11 +3,11 @@ Section: python
 Priority: optional
 Maintainer: Filippo Giunchedi <fgiunchedi@wikimedia.org>
 Build-Depends: debhelper (>= 10),
-               logstash-oss (= 1:7.10.0-1)
+               logstash-oss (>= 1:7.16.3)
 Standards-Version: 3.9.8
 
 Package: logstash-plugins
 Architecture: all
-Depends: logstash-oss (= 1:7.10.0-1),
+Depends: logstash-oss (>= 1:7.16.3),
          sudo
 Description: Logstash plugins packaged for offline install.
