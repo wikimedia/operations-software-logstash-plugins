@@ -1,3 +1,12 @@
+logstash-plugins (7.10.0-3) buster-wikimedia; urgency=medium
+
+  * updating plugins - bump patch version
+    * logstash-output-opensearch 1.1.0
+    * logstash-output-loki       1.0.3
+    * logstash-filter-logfmt     0.1.12
+
+ -- Cole White <cwhite@wikimedia.org>  Tue, 18 Jan 2022 22:21:51 +0000
+
 logstash-plugins (7.10.0-2) buster-wikimedia; urgency=medium
 
   * add logstash-output-opensearch plugin
